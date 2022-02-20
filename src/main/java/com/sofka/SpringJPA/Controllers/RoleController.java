@@ -42,8 +42,8 @@ public class RoleController {
         return roleService.createRole(role);
     }
     @PutMapping("/roles/{id}")
-    public ResponseEntity<Role> updateRoles(@PathVariable("id") long id, @RequestBody Role tutorial) {
-        return roleService.updateRole(id,tutorial);
+    public ResponseEntity<Role> updateRoles(@PathVariable("id") long id, @RequestBody Role role) {
+        return roleService.updateRole(id,role);
     }
 
     @DeleteMapping("/roles/{id}")
