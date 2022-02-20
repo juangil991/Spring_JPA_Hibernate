@@ -3,7 +3,7 @@ package com.sofka.SpringJPA.models;
 import javax.persistence.*;
 
 @Entity
-public class Proyect {
+public class Project {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     Long id;
@@ -11,10 +11,10 @@ public class Proyect {
     @Column(length = 25,nullable = false,unique = true)
     private String name;
 
-    public Proyect() {
+    public Project() {
     }
 
-    public Proyect(String name) {
+    public Project(String name) {
         this.name = name;
     }
 

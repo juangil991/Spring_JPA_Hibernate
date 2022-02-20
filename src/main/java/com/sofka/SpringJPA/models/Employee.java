@@ -1,7 +1,8 @@
 package com.sofka.SpringJPA.models;
 
 import javax.persistence.*;
-import java.util.Objects;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Employee {
@@ -18,13 +19,24 @@ public class Employee {
     @Column(length = 25, nullable = false)
     private String employeeid;
 
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "id_role")
+    private Role role;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "employee_project",
+            joinColumns = {@JoinColumn(name="employee_id")},
+            inverseJoinColumns = {@JoinColumn(name ="project_id")})
+    private List<Project> projects=new ArrayList<Project>();
+
     public Employee() {
     }
 
-    public Employee(String firstName, String lastName, String employeeid) {
+    public Employee(String firstName, String lastName, String employeeid, Role role) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.employeeid = employeeid;
+        this.role = role;
     }
 
     public long getId() {
@@ -57,6 +69,22 @@ public class Employee {
 
     public void setEmployeeid(String employeeid) {
         this.employeeid = employeeid;
+    }
+
+    public List<Project>getProjects(){
+        return projects;
+    }
+
+    public void setProjects(List<Project>projects){
+        this.projects=projects;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     @Override
